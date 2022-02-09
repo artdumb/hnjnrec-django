@@ -1,0 +1,88 @@
+{% extends 'first/base.html' %} 
+{% load static %}
+{% block content %}
+<div class = "container" >
+    {% for item in items %}
+         
+            <div class = "row restaurant-item" style="margin:20px auto; ">
+            <div class = "col-sm-12">
+
+                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000" data-pause = false>
+                  <div class="carousel-inner"  style="border-radius: 12px; overflow: hidden;">
+                      
+                      {% for ite in item %}
+                        {% if forloop.first %}
+
+                            <div class="carousel-item active" >
+                                <a href ="{% url 'detail' id=ite.place_id_id %}">
+                                     <img class="d-block w-100" style="border-radius:10px; opacity: 0.9; margin-top: -18%; margin-bottom: -18%;" src="{{ ite.image.url }}" alt="First slide">
+                                </a>
+                                <div class="carousel-caption text-top" >
+                                  <h3 style="color :black;font-family: 'Dokdo', cursive; font-size: 30px;  margin-bottom: 50px;">{{ ite.place_id.place_name }}</h3> 
+                                </div>
+                            </div>
+                        
+                        {% else %}
+                            <div class="carousel-item">
+                                <a href ="{% url 'detail' id=ite.place_id_id %}">
+                                    <img class="d-block w-100" style="border-radius:10px; opacity: 0.9; margin-top: -18%; margin-bottom: -18%;" src="{{ ite.image.url }}" alt="기달려">
+                                
+                                <div class="carousel-caption">
+                                  <h3 style="color :black; font-family: 'Dokdo', cursive; pointer-events:inherit; font-size: 30px; margin-bottom: 50px;">{{ ite.place_id.place_name }}</h3> 
+                                </div>
+                              </a>
+                            </div>
+                        {% endif %}
+                      
+                      {% endfor %}
+                  
+                   </div>
+                
+
+                    <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div> 
+
+
+
+
+            </div>
+            </div>
+            
+    {% endfor %}
+      
+</div>
+
+    
+<div class="row">
+  <div class = "col-sm-12 text-center">
+      <div class = "pagenation">
+          <span class="step-links text-center" style="width:100%;">
+              {% if items.has_previous %}
+                  <a href = "?page=1">&laquo;</a>
+                  <a href ="?page={{ items.previous_page_number }}">{{ items.previous_page_number }}</a>
+              {% endif %}
+
+              <span class="current">
+                  {{ items.number }}
+              </span>
+              {% if items.has_next %}
+                   <a href ="?page={{ items.next_page_number }}">{{ items.next_page_number }}</a>
+                   ...
+                   <a href ="?page={{ items.paginator.num_pages }}">{{ items.paginator.num_pages }}</a>
+              {% endif %}
+
+          </span>
+      </div>
+  </div>
+</div>
+    
+{% endblock %}
+
+

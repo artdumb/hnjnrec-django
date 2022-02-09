@@ -1,0 +1,71 @@
+{% extends 'first/base.html' %} 
+{% load static %}
+{% block content %}
+<div class = "container">
+
+    <div = class = "row">
+        <img class="d-block w-100" style="border-radius:10px; height:50%; width:50%;" src="{{ item.image.url }}" alt="First slide">
+
+    </div>
+    <div class = "row">
+        <div class = "col-12" style = "margin-top:20px; display: flex;justify-content: center; flex-direction: column; font-family: 'Gamja Flower';">
+         <h3 style="text-align: center; font-size:xx-large; font-weight: 800;">{{ item.title }}</h3>
+        </div>
+    </div>
+    <div class = "row">
+        
+        <div class = "col-12" style = "margin-top:20px; display: flex;justify-content: center; flex-direction: column; font-family: 'Gamja Flower';">
+            
+            <p style="text-align: center; ">
+                body :  {{ item.cam }}
+            </p>
+            <p style="text-align: center; ">
+                film : {{ item.film }}
+            </p>
+            <p style="text-align: center; ">
+                lens : {{ item.lens }}
+            </p>
+            <p style="text-align: center; ">
+                description : {{ item.descrip }}
+            </p>
+        </div>
+    </div>
+    <div class = "row"> 
+        <div class = "col-12" style = "display: flex; justify-content: space-between; margin-left : 10%; ">
+            <p>
+                <a href="{% url 'review_create' id=item.id %}">
+                    <button class="btn btn-info">댓글달기</button>
+                </a>
+            </p>
+            <p style="margin-right :20%;">
+                <a href="{% url 'delete' id=item.id %}">
+                    <button class="btn btn-danger">삭제하기</button>
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class = "row">
+        <div class = "col-12">
+            {% for review in reviews %}
+            <div style = "display :flex; justify-content: center; margin-bottom: 5px; align-items: center;">
+                <div class="card" style = "width: 80%; "">
+                    <div class="card-body" style = "display: flex; justify-content: space-between;">
+                        <p>{{ review.comment }}        </p>
+                        <p>
+                        <a href="{% url 'review_delete' pic_id=item.id review_id=review.id %}">
+                            <button type="button" class="btn btn-secondary btn-sm">댓글삭제</button>
+                        </a>
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+</div>
+{% endblock %}

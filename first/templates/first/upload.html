@@ -1,0 +1,28 @@
+{% extends 'first/base.html' %} 
+{% load static %}
+{% block content %}
+<div class = "container">
+    <form action = "{% url 'upload' id=item.id %}" method = "post" enctype = "multipart/form-data">
+        {% csrf_token %}
+        <p>제목</p>
+        <input name = "title" type = "text">
+        <p>바디</p>
+        <input name = "cam" type = "text">
+        <p>필름</p>
+        <input name = "film" type = "text">
+        <p>렌즈</p>
+        <input name = "lens" type = "text">
+        <p>설명</p>
+        <input name = "descrip" type = "text">
+        <p>비밀번호</p>
+        <input name = "password" type = "password">
+
+        <input type="hidden" name = "place_id">
+        <div class="form-group m-3">
+            <label>Upload image</label>
+            <input required name="image" type="file" multiple class="form-control-file">
+        </div>
+        <button type="submit">등록</button>
+    </form>
+</div>
+{% endblock %}
