@@ -138,3 +138,11 @@ def review_delete(request, pic_id, review_id):
             review.delete()
             return redirect('moredetail', id=pic_id)
     return render(request, 'first/review_delete.html', {'item': pic, 'review': review})
+
+
+def seceret_img(request):
+    password = request.POST.get('password', '')
+    if request.method == 'POST' and 'password' in request.POST:
+        if password == request.POST.get('password'):
+            return render(request, 'first/secret_img.html')
+    return render(request, 'first/secret.html')

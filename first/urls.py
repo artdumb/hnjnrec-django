@@ -17,5 +17,6 @@ urlpatterns = [
          views.review_create, name='review_create'),
     path('place/<int:pic_id>/<int:review_id>/reviewdelete',
          views.review_delete, name='review_delete'),
-
+    path('sec/',
+         views.seceret_img, name='sec'),
 ]
