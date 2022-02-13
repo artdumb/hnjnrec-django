@@ -1,43 +1,38 @@
-{% extends 'first/base.html' %} 
+{% extends 'first/base.html' %}
 {% load static %}
 {% block content %}
 <div class = "container" style="max-width: 1024px;">
     {% for item in items %}
-         
+
             <div class = "row restaurant-item">
             <div class = "col-sm-12">
-
-                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000" data-pause = false>
+                <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" data-interval="3000" data-pause = false>
                   <div class="carousel-inner"  style="border-radius: 12px; overflow: hidden;">
-                      
+
                       {% for ite in item %}
                         {% if forloop.first %}
-
-                            <div class="carousel-item active" >
+                            <div class="carousel-item active">
                                 <a href ="{% url 'detail' id=ite.place_id_id %}">
                                      <img class="d-block w-100" style="border-radius:10px; opacity: 0.9; margin-top: -18%; margin-bottom: -18%;" src="{{ ite.image.url }}" alt="First slide">
                                 </a>
-                                <div class="carousel-caption text-top" >
-                                  <h3 style="color :black;font-family: 'Dokdo', cursive; font-size: 30px;  margin-bottom: 50px;">{{ ite.place_id.place_name }}</h3> 
-                                </div>
+                       
                             </div>
-                        
+
                         {% else %}
                             <div class="carousel-item">
                                 <a href ="{% url 'detail' id=ite.place_id_id %}">
                                     <img class="d-block w-100" style="border-radius:10px; opacity: 0.9; margin-top: -18%; margin-bottom: -18%;" src="{{ ite.image.url }}" alt="기달려">
-                                
-                                <div class="carousel-caption">
-                                  <h3 style="color :black; font-family: 'Dokdo', cursive; pointer-events:inherit; font-size: 30px; margin-bottom: 50px;">{{ ite.place_id.place_name }}</h3> 
-                                </div>
                               </a>
                             </div>
                         {% endif %}
-                      
+                        <div class="carousel-caption" style = "transform: translateY(0%);">
+                          <span style="color :rgb(255, 255, 255);font-family: 'Dokdo', cursive; font-size: 50px; margin-bottom: 0px;">{{ ite.place_id.place_name }}</span>
+                          <span style="color :rgb(0,0,0);font-family: 'Dokdo', cursive; font-size: 50px; margin-bottom: 0px;">{{ ite.place_id.place_name }}<span>
+                        </div>
                       {% endfor %}
-                  
-                   </div>
                 
+                   </div>
+
 
                     <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -47,19 +42,18 @@
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="sr-only">Next</span>
                     </a>
-                  </div> 
+                  </div>
 
 
 
 
             </div>
             </div>
-            
+
     {% endfor %}
-      
+
 </div>
 
-    
 <div class="row">
   <div class = "col-sm-12 text-center">
       <div class = "pagenation">
@@ -82,7 +76,5 @@
       </div>
   </div>
 </div>
-    
+
 {% endblock %}
-
-

@@ -113,10 +113,10 @@ def more_detail(request, id):
 def delete(request, id):
     item = get_object_or_404(Picdata, pk=id)
     password_db = get_object_or_404(Password, pk=1)
-    password = request.POST.get('password', '')
-    if password == password_db and 'password' in request.POST:
-        item.delete()
-        return redirect('/main')
+    if request.method == 'POST' and 'password' in request.POST:
+        if request.POST.get('password') == password_db.password:
+            item.delete()
+            return redirect('/main')
     return render(request, 'first/delete.html', {'item': item})
 
 

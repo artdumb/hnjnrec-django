@@ -5,9 +5,9 @@
 <div class = "container">
     <form action = "{% url 'review_delete' pic_id=item.id review_id=review.id %}" method = "post">
         {% csrf_token %}
-        <label name = "password">비밀번호</label>
+        <label name = "password" style="font-family: 'Dokdo', cursive;">비밀번호</label>
         <input name = "password" type = "password"/>
-        <button type="submit">삭제</button>
+        <button type="submit" style="font-family: 'Dokdo', cursive;">삭제</button>
     </form>
 </div>
 {% endblock %}

@@ -24,19 +24,3 @@
   font-size: 50px;
   font-family: kra-korean;
 }
-.carousel-caption {
-  transform: translateY(-1000%);
-  bottom: initial;
-  top: 50%;
-}
-@media (min-width: 768px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 992px) {
-  .container {
-    max-width: 1024px;
-  }
-}
