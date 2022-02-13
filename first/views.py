@@ -54,7 +54,7 @@ def upload_place(request):
         form = PlacedataForm(request.POST)
         if form.is_valid() and password == password_db.password:
             new_item = form.save()
-        return HttpResponseRedirect('/main/place')
+        return HttpResponseRedirect('/place')
     form_place = PlacedataForm()
     return render(request, 'first/upload_place.html', {'form_place': form_place})
 
@@ -79,7 +79,7 @@ def upload(request, id):
             )
             picdb.save()
 
-        return redirect('/main/', id=id)
+        return redirect('/', id=id)
 
     item = get_object_or_404(Placedata, pk=id)
     form = PicdataForm(initial={'place_id': item})
@@ -107,7 +107,7 @@ def more_detail(request, id):
             'reviews': reviews,
         }
         return render(request, 'first/more_detail.html', context)
-    return HttpResponseRedirect('/main/')
+    return HttpResponseRedirect('/')
 
 
 def delete(request, id):
@@ -116,7 +116,7 @@ def delete(request, id):
     if request.method == 'POST' and 'password' in request.POST:
         if request.POST.get('password') == password_db.password:
             item.delete()
-            return redirect('/main')
+            return redirect('/')
     return render(request, 'first/delete.html', {'item': item})
 
 
