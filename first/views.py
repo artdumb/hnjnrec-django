@@ -99,6 +99,7 @@ def detail(request, id):
 
 def more_detail(request, id):
     if 'id' is not None:
+
         item = Picdata.objects.get(id=id)
         reviews = Reviewdata.objects.filter(pic=item).all()
         context = {
