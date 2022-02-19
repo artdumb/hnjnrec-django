@@ -7,9 +7,9 @@
         <div class = "col-sm-12">
             <a href ="{% url 'upload' id=item.id %}">
             <div class = "card border-secondary">
-                <div class = "card-body">
+                <div class = "card-body" style="display: flex; justify-content: center; text-decoration: none; color: inherit; font-family: 'Dokdo', cursive;">
                     
-                    <h5 class = "card-title">
+                    <h5 class = "card-title" style="color: rgb(80, 80, 80); font-size: 50px;">
                         {{ item.place_name }}
                     </h5>
 
@@ -19,7 +19,20 @@
         </div>
         </div>
     {% endfor %}
+        <div class = "row restaurant-item" style="margin:20px auto;">
+        <div class = "col-sm-12">
+            <a href ="{% url 'upload_place' %}">
+            <div class = "card border-secondary">
+                <div class = "card-body" style="display: flex; justify-content: center; text-decoration: none; color: inherit; font-family: 'Dokdo', cursive;">
+                    
+                    <h5 class = "card-title" style="color: rgb(0, 116, 116); font-size: 50px;">
+                        +새로운 장소 등록
+                    </h5>
 
-    <a href ="{% url 'upload_place' %}"> 새로운장소</a>  
+                </div>
+            </div>
+        </a>
+        </div>
+        </div>
 </div>
 {% endblock %}

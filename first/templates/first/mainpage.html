@@ -59,17 +59,17 @@
       <div class = "pagenation">
           <span class="step-links text-center" style="width:100%;">
               {% if items.has_previous %}
-                  <a href = "?page=1">&laquo;</a>
-                  <a href ="?page={{ items.previous_page_number }}">{{ items.previous_page_number }}</a>
+                  <a href = "?page=1" style = "font-size: 40px; text-decoration: none; color: inherit; font-family: 'Dokdo', cursive;">&laquo;</a>
+                  <a href ="?page={{ items.previous_page_number }}" style = "font-size: 40px; text-decoration: none; color: inherit; font-family: 'Dokdo', cursive;">{{ items.previous_page_number }}</a>
               {% endif %}
 
-              <span class="current">
+              <span class="current" style = "font-size: 40px; text-decoration: none; color: rgb(255, 176, 176); font-family: 'Dokdo', cursive;">
                   {{ items.number }}
               </span>
               {% if items.has_next %}
-                   <a href ="?page={{ items.next_page_number }}">{{ items.next_page_number }}</a>
+                   <a href ="?page={{ items.next_page_number }}" style = "font-size: 40px; text-decoration: none; color: inherit; font-family: 'Dokdo', cursive;">{{ items.next_page_number }}</a>
                    ...
-                   <a href ="?page={{ items.paginator.num_pages }}">{{ items.paginator.num_pages }}</a>
+                   <a href ="?page={{ items.paginator.num_pages }}" style = "font-size: 40px; text-decoration: none; color: inherit; font-family: 'Dokdo', cursive;">{{ items.paginator.num_pages }}</a>
               {% endif %}
 
           </span>

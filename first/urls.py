@@ -1,7 +1,8 @@
 from django.urls import path
 from . import views
 urlpatterns = [
-    path('', views.mainpage, name='mainpage'),
+    path('', views.todayPhoto, name='today-photo'),
+    path('main/', views.mainpage, name='mainpage'),
     path('uploadplace/', views.upload_place, name="upload_place"),
     path('place/', views.place_list, name="place_list"),
     path('place/<int:id>/upload/',

@@ -7,6 +7,21 @@ from first.forms import ReviewForm
 from django.http import HttpResponseRedirect
 from . import models
 from django.core.paginator import Paginator
+import random
+from datetime import datetime
+from django.utils.dateformat import DateFormat
+
+
+def todayPhoto(request):
+    today = DateFormat(datetime.now()).format('Ymd')
+    items_pic = Picdata.objects.all()
+    random.seed(today)
+    item = random.sample(list(items_pic), 4)
+    print(item)
+    context = {
+        'item': item,
+    }
+    return render(request, 'first/today-photo.html', context)
 
 
 def mainpage(request):
@@ -30,7 +45,7 @@ def mainpage(request):
     # new-item의 인덱스 ==> 장소들
     # new_item[0] ==> 첫번째 장소의 모든 사진들
     # new_item[0][0]==> 첫번째 장소의 첫번째 사진
-    paginator = Paginator(limited_item, 5)  # third/list?page=1 쿼리에서 페이지를 받앋옴
+    paginator = Paginator(limited_item, 6)  # third/list?page=1 쿼리에서 페이지를 받앋옴
     page = request.GET.get('page')
     new_page_item = paginator.get_page(page)
     context = {
@@ -79,7 +94,7 @@ def upload(request, id):
             )
             picdb.save()
 
-        return redirect('/', id=id)
+        return redirect('/main', id=id)
 
     item = get_object_or_404(Placedata, pk=id)
     form = PicdataForm(initial={'place_id': item})
@@ -88,7 +103,7 @@ def upload(request, id):
 
 def detail(request, id):
     items = Picdata.objects.filter(place_id_id=id)
-    paginator = Paginator(items, 5)  # third/list?page=1 쿼리에서 페이지를 받앋옴
+    paginator = Paginator(items, 8)  # third/list?page=1 쿼리에서 페이지를 받앋옴
     page = request.GET.get('page')
     new_page_item = paginator.get_page(page)
     context = {
@@ -116,7 +131,7 @@ def delete(request, id):
     if request.method == 'POST' and 'password' in request.POST:
         if request.POST.get('password') == password_db.password:
             item.delete()
-            return redirect('/')
+            return redirect('/main')
     return render(request, 'first/delete.html', {'item': item})
 
 
