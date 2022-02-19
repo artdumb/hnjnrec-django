@@ -19,7 +19,7 @@ def todayPhoto(request):
     item = random.sample(list(items_pic), 4)
     print(item)
     context = {
-        'item': item,
+        'items': item,
     }
     return render(request, 'first/today-photo.html', context)
 
