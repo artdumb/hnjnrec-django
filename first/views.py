@@ -1,7 +1,7 @@
 from operator import itemgetter
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from first.models import Picdata, Placedata, Reviewdata, Password
+from first.models import Picdata, Placedata, Reviewdata, Password, record
 from first.forms import PicdataForm, PlacedataForm
 from first.forms import ReviewForm
 from django.http import HttpResponseRedirect
@@ -17,7 +17,11 @@ def todayPhoto(request):
     items_pic = Picdata.objects.all()
     random.seed(today)
     item = random.sample(list(items_pic), 4)
-    print(item)
+
+    view_count = record.objects.get(id=1)
+    view_count.views_count = view_count.views_count+1
+    view_count.save()
+
     context = {
         'items': item,
     }
